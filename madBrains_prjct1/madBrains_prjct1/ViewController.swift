@@ -21,13 +21,13 @@ class ViewController: UIViewController {
     
     lazy var alertMax: UIAlertController = {
         let alertMax = UIAlertController(title: "Алярм!", message: "Достигнуто максимальное значение", preferredStyle: .alert)
-        alertMax.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        alertMax.addAction(UIAlertAction(title: "Ok", style: .default))
         return alertMax
     }()
     
     lazy var alertMin: UIAlertController = {
         let alertMin = UIAlertController(title: "Алярм!", message: "Достигнуто минимальное значение", preferredStyle: .alert)
-        alertMin.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        alertMin.addAction(UIAlertAction(title: "Ok", style: .default))
         return alertMin
     }()
     
@@ -38,28 +38,25 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         count = defaultCount
-        
     }
     
     
     @IBAction func plusTap(_ sender: Any) {
-        let alert1 = alertMax
         count = count+1
         counterLabel.text = "\(count)"
         miniusButton.isEnabled = true
         if count == maxCount {
-            self.present(alert1, animated: true, completion: nil)
+            present(alertMax, animated: true)
             plusButton.isEnabled = false
         }
     }
     
     @IBAction func minusTap(_ sender: Any) {
-        let alert2 = alertMin
         count = count-1
         counterLabel.text = "\(count)"
         plusButton.isEnabled = true
         if count == minCount {
-            self.present(alert2, animated: true, completion: nil)
+            present(alertMin, animated: true)
             miniusButton.isEnabled = false
         }
     }
